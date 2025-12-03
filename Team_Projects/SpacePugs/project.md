@@ -12,6 +12,7 @@ This challenge examines the relationship between legal gender gaps and women's e
 - Prema Myhren
 - Team Member
 - Upasana Pattnaik
+- Kushal Mohnot
 
 
 ## Challenge Category Area
