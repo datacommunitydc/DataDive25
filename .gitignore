@@ -1,8 +1,7 @@
 # Data files
 *.duckdb
-*.csv
+# CSVs in Team_Projects/**/data/ are tracked via LFS (see .gitattributes)
 Team_Projects/AI_Readiness_Measures/GJID_join_database_w_definitions.xlsx
-Team_Projects/AI_Readiness_Measures/data/
 
 # Quarto generated files
 _quarto.yml
