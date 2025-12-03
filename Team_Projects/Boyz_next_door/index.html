@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulations & Employment | World Bank DataDive 2025</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wb-blue: #002244;
+            --wb-blue-light: #009FDA;
+            --wb-blue-muted: #4A6FA5;
+            --white: #FFFFFF;
+            --off-white: #FAFAFA;
+            --gray-100: #F5F5F5;
+            --gray-200: #E5E5E5;
+            --gray-300: #D4D4D4;
+            --gray-400: #A3A3A3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --positive: #166534;
+            --negative: #991B1B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--wb-blue);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .overline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--wb-blue-light);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--wb-blue);
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--wb-blue);
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--gray-500);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            background: var(--white);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--wb-blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 12px;
+        }
+
+        /* Key Finding */
+        .key-finding {
+            background: var(--gray-100);
+            padding: 60px;
+            margin: 60px 0;
+        }
+
+        .key-finding-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .key-finding h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--wb-blue);
+            margin-bottom: 16px;
+        }
+
+        .key-finding p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .key-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 24px;
+            background: var(--white);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        .metric-value.positive { color: var(--positive); }
+        .metric-value.negative { color: var(--negative); }
+        .metric-value.neutral { color: var(--wb-blue); }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* Chart containers */
+        .chart-container {
+            position: relative;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 16px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--wb-blue);
+        }
+
+        .data-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        .data-table tr:hover {
+            background: var(--gray-100);
+        }
+
+        .coef {
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .coef.neg { color: var(--positive); }
+        .coef.pos { color: var(--negative); }
+
+        .sig {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 2px;
+        }
+
+        .sig.high {
+            background: var(--wb-blue);
+            color: var(--white);
+        }
+
+        .sig.low {
+            background: var(--gray-200);
+            color: var(--gray-500);
+        }
+
+        /* Model Performance */
+        .models-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: var(--gray-200);
+            margin: 40px 0;
+        }
+
+        .model-item {
+            background: var(--white);
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        .model-item.highlight {
+            background: var(--wb-blue);
+            color: var(--white);
+        }
+
+        .model-item.highlight .model-name { color: rgba(255,255,255,0.7); }
+        .model-item.highlight .model-r2 { color: var(--white); }
+        .model-item.highlight .model-n { color: rgba(255,255,255,0.5); }
+
+        .model-name {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+
+        .model-r2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--wb-blue);
+        }
+
+        .model-n {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+
+        /* Policy */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .policy-item {
+            padding: 32px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .policy-item.priority {
+            border-color: var(--wb-blue);
+            border-width: 2px;
+        }
+
+        .policy-number {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--wb-blue-light);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .policy-item h4 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--wb-blue);
+            margin-bottom: 12px;
+        }
+
+        .policy-item p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: var(--wb-blue);
+            color: var(--white);
+            padding: 12px 16px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+            z-index: 100;
+            max-width: 200px;
+        }
+
+        .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tooltip-value {
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* Country Profile */
+        .country-profile-container {
+            margin-top: 40px;
+        }
+
+        .country-selector {
+            margin-bottom: 40px;
+        }
+
+        .country-selector label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .country-selector select {
+            width: 100%;
+            max-width: 400px;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-family: 'Source Sans 3', sans-serif;
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            color: var(--wb-blue);
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .country-selector select:hover,
+        .country-selector select:focus {
+            border-color: var(--wb-blue);
+            outline: none;
+        }
+
+        .country-profile {
+            background: var(--gray-100);
+            padding: 40px;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .profile-title h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--wb-blue);
+            margin-bottom: 4px;
+        }
+
+        .profile-region {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .profile-rank {
+            text-align: right;
+        }
+
+        .profile-rank-number {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--wb-blue);
+            line-height: 1;
+        }
+
+        .profile-rank-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .profile-metric {
+            background: var(--white);
+            padding: 24px;
+        }
+
+        .profile-metric-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--wb-blue);
+            line-height: 1;
+        }
+
+        .profile-metric-label {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+
+        .profile-metric-bar {
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .profile-metric-fill {
+            height: 100%;
+            background: var(--wb-blue);
+            transition: width 0.5s ease;
+        }
+
+        .profile-metric-fill.vuln {
+            background: var(--wb-blue-light);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .profile-chart {
+            background: var(--white);
+            padding: 24px;
+        }
+
+        .profile-chart-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .profile-details {
+            background: var(--white);
+            padding: 24px;
+        }
+
+        .dimension-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .dimension-row:last-child {
+            border-bottom: none;
+        }
+
+        .dimension-name {
+            width: 100px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .dimension-bar-container {
+            flex: 1;
+            height: 8px;
+            background: var(--gray-100);
+            border-radius: 4px;
+            margin: 0 16px;
+            position: relative;
+        }
+
+        .dimension-bar-fill {
+            height: 100%;
+            background: var(--wb-blue);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .dimension-bar-avg {
+            position: absolute;
+            top: -4px;
+            bottom: -4px;
+            width: 2px;
+            background: var(--wb-blue-light);
+        }
+
+        .dimension-value {
+            width: 50px;
+            text-align: right;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--wb-blue);
+        }
+
+        .profile-outcomes {
+            background: var(--white);
+            padding: 24px;
+        }
+
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .outcome-item {
+            text-align: center;
+            padding: 20px 12px;
+            background: var(--gray-100);
+        }
+
+        .outcome-value {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--wb-blue);
+        }
+
+        .outcome-label {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        /* Ranking Section */
+        .ranking-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .ranking-btn {
+            padding: 12px 24px;
+            font-size: 0.85rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 500;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ranking-btn:hover {
+            border-color: var(--wb-blue);
+            color: var(--wb-blue);
+        }
+
+        .ranking-btn.active {
+            background: var(--wb-blue);
+            border-color: var(--wb-blue);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            background: var(--wb-blue);
+            color: var(--white);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; }
+            h1 { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .key-finding-grid { grid-template-columns: 1fr; }
+            .models-row { grid-template-columns: repeat(2, 1fr); }
+            .policy-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="tooltip" id="tooltip"></div>
+
+    <header>
+        <div class="container">
+            <div class="overline">World Bank DataDive 2025 · Jobs Challenge - Boyz next door (Bachir, Yoji, Mohaimenul)</div>
+            <h1>Regulations &<br>Employment Outcomes</h1>
+            <p>Analyzing B-READY regulatory quality and its relationship with job vulnerability across 51 economies</p>
+
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">51</div>
+                <div class="stat-label">Economies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">11</div>
+                <div class="stat-label">Regulatory Dimensions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Models</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Significant Effects</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="key-finding">
+            <div class="key-finding-grid">
+                <div>
+                    <h3>Labor regulation quality is the strongest predictor of reduced vulnerable employment</h3>
+                    <p>A one-point improvement in labor regulation quality is associated with a 0.48 percentage point reduction in vulnerable employment, controlling for GDP per capita.</p>
+                </div>
+                <div class="key-metrics">
+                    <div class="metric">
+                        <div class="metric-value positive">−0.48</div>
+                        <div class="metric-label">Coefficient</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value neutral">0.028</div>
+                        <div class="metric-label">p-value</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value neutral">74.3%</div>
+                        <div class="metric-label">R²</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value negative">+0.51</div>
+                        <div class="metric-label">Entry Paradox</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <h2>Labor Regulation vs. Vulnerable Employment</h2>
+            <p class="section-subtitle">Each point represents one economy. Better labor regulations correlate with lower job vulnerability.</p>
+            
+            <div class="chart-container" id="scatter-container" style="height: 500px;"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Correlation Matrix</h2>
+            <p class="section-subtitle">Relationship between regulatory dimensions and employment outcomes</p>
+            
+            <div class="chart-container" id="heatmap-container" style="height: 400px;"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Regression Results</h2>
+            <p class="section-subtitle">OLS estimates with robust standard errors</p>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Predictor</th>
+                        <th>Outcome</th>
+                        <th style="text-align: right;">Coefficient</th>
+                        <th style="text-align: right;">p-value</th>
+                        <th>Significance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Business Entry Quality</td>
+                        <td>Labor Constraints</td>
+                        <td style="text-align: right;" class="coef pos">+0.508</td>
+                        <td style="text-align: right;">0.001</td>
+                        <td><span class="sig high">p &lt; 0.01</span></td>
+                    </tr>
+                    <tr>
+                        <td>Labor Regulation Quality</td>
+                        <td>Labor Constraints</td>
+                        <td style="text-align: right;" class="coef neg">−0.484</td>
+                        <td style="text-align: right;">0.012</td>
+                        <td><span class="sig high">p &lt; 0.05</span></td>
+                    </tr>
+                    <tr>
+                        <td>Labor Regulation Quality</td>
+                        <td>Vulnerable Employment</td>
+                        <td style="text-align: right;" class="coef neg">−0.479</td>
+                        <td style="text-align: right;">0.028</td>
+                        <td><span class="sig high">p &lt; 0.05</span></td>
+                    </tr>
+                    <tr>
+                        <td>ln(GDP per capita)</td>
+                        <td>Vulnerable Employment</td>
+                        <td style="text-align: right;" class="coef neg">−15.41</td>
+                        <td style="text-align: right;">&lt;0.001</td>
+                        <td><span class="sig high">p &lt; 0.01</span></td>
+                    </tr>
+                    <tr>
+                        <td>Finance Regulation Quality</td>
+                        <td>Finance Constraints</td>
+                        <td style="text-align: right;" class="coef" style="color: var(--gray-400);">+0.101</td>
+                        <td style="text-align: right;">0.590</td>
+                        <td><span class="sig low">ns</span></td>
+                    </tr>
+                    <tr>
+                        <td>Trade Regulation Quality</td>
+                        <td>Trade Constraints</td>
+                        <td style="text-align: right;" class="coef" style="color: var(--gray-400);">−0.012</td>
+                        <td style="text-align: right;">0.960</td>
+                        <td><span class="sig low">ns</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Model Performance</h2>
+            <p class="section-subtitle">R² across five outcome specifications</p>
+            
+            <div class="models-row">
+                <div class="model-item highlight">
+                    <div class="model-name">Vulnerable Employment</div>
+                    <div class="model-r2">74.3%</div>
+                    <div class="model-n">N = 46</div>
+                </div>
+                <div class="model-item">
+                    <div class="model-name">Finance Constraints</div>
+                    <div class="model-r2">38.8%</div>
+                    <div class="model-n">N = 47</div>
+                </div>
+                <div class="model-item highlight">
+                    <div class="model-name">Labor Constraints</div>
+                    <div class="model-r2">21.4%</div>
+                    <div class="model-n">N = 47</div>
+                </div>
+                <div class="model-item">
+                    <div class="model-name">Training Rate</div>
+                    <div class="model-r2">18.3%</div>
+                    <div class="model-n">N = 47</div>
+                </div>
+                <div class="model-item">
+                    <div class="model-name">Trade Constraints</div>
+                    <div class="model-r2">16.8%</div>
+                    <div class="model-n">N = 46</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Regulatory Quality by Dimension</h2>
+            <p class="section-subtitle">Average B-READY Pillar I scores across 51 economies</p>
+            
+            <div class="chart-container" id="bar-container" style="height: 400px;"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Country Profiles</h2>
+            <p class="section-subtitle">Explore regulatory quality and employment outcomes for each economy</p>
+            
+            <div class="country-profile-container">
+                <div class="country-selector">
+                    <label for="country-select">Select Economy</label>
+                    <select id="country-select"></select>
+                </div>
+                
+                <div class="country-profile" id="country-profile">
+                    <div class="profile-header">
+                        <div class="profile-title">
+                            <h3 id="profile-name">Select a country</h3>
+                            <span class="profile-region" id="profile-region"></span>
+                        </div>
+                        <div class="profile-rank" id="profile-rank"></div>
+                    </div>
+                    
+                    <div class="profile-metrics">
+                        <div class="profile-metric">
+                            <div class="profile-metric-value" id="metric-overall">--</div>
+                            <div class="profile-metric-label">Overall Score</div>
+                            <div class="profile-metric-bar"><div class="profile-metric-fill" id="bar-overall"></div></div>
+                        </div>
+                        <div class="profile-metric">
+                            <div class="profile-metric-value" id="metric-vuln">--</div>
+                            <div class="profile-metric-label">Vulnerable Employment</div>
+                            <div class="profile-metric-bar"><div class="profile-metric-fill vuln" id="bar-vuln"></div></div>
+                        </div>
+                        <div class="profile-metric">
+                            <div class="profile-metric-value" id="metric-gdp">--</div>
+                            <div class="profile-metric-label">GDP per Capita</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-grid">
+                        <div class="profile-chart">
+                            <div class="profile-chart-title">Regulatory Dimensions</div>
+                            <div id="radar-container" style="height: 320px;"></div>
+                        </div>
+                        <div class="profile-details">
+                            <div class="profile-chart-title">Dimension Scores</div>
+                            <div id="dimension-bars"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-outcomes">
+                        <div class="profile-chart-title">Firm Constraints (Enterprise Survey)</div>
+                        <div class="outcomes-grid" id="outcomes-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Compare Economies</h2>
+            <p class="section-subtitle">See how economies rank across key indicators</p>
+            
+            <div class="ranking-controls">
+                <button class="ranking-btn active" data-sort="overall">Overall Score</button>
+                <button class="ranking-btn" data-sort="labor">Labor Regulation</button>
+                <button class="ranking-btn" data-sort="vulnEmp">Vulnerable Employment</button>
+                <button class="ranking-btn" data-sort="gdp">GDP per Capita</button>
+            </div>
+            
+            <div class="ranking-chart" id="ranking-container" style="height: 600px;"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Policy Implications</h2>
+            <p class="section-subtitle">Evidence-based priorities for regulatory reform</p>
+            
+            <div class="policy-grid">
+                <div class="policy-item priority">
+                    <div class="policy-number">01 · PRIORITY</div>
+                    <h4>Focus on Labor Regulations</h4>
+                    <p>Labor regulation quality is the only dimension significantly predicting reduced vulnerable employment. Prioritize worker protections, contract enforcement, and dispute resolution mechanisms.</p>
+                </div>
+                <div class="policy-item">
+                    <div class="policy-number">02 · CAUTION</div>
+                    <h4>Sequence Entry Reforms</h4>
+                    <p>Easier business entry creates labor constraints by increasing competition for workers. Pair entry reforms with skills development and labor market information systems.</p>
+                </div>
+                <div class="policy-item">
+                    <div class="policy-number">03 · FOUNDATION</div>
+                    <h4>Support Growth</h4>
+                    <p>GDP per capita explains most variation in outcomes. Regulatory reforms are complements to, not substitutes for, broader economic development strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>
+                <strong>World Bank DataDive 2025</strong> · Challenge 2: Jobs & Regulations<br>
+                Data: B-READY 2024, Enterprise Surveys, ILO ILOSTAT, World Development Indicators
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Full country data
+        const countryData = [
+            { code: 'BGD', name: 'Bangladesh', region: 'South Asia', overall: 56.9, entry: 80.0, labor: 78.7, finance: 74.2, trade: 51.1, utilities: 52.8, taxation: 44.8, disputes: 52.5, vulnEmp: 48.9, laborConstr: 28.8, finConstr: 56.6, tradeConstr: 11.3, trainRate: 38.5, gdp: 1941 },
+            { code: 'BRB', name: 'Barbados', region: 'Latin America & Caribbean', overall: 58.8, entry: 81.9, labor: 70.9, finance: 64.9, trade: 63.2, utilities: 57.4, taxation: 38.5, disputes: 59.1, vulnEmp: 20.0, laborConstr: 15.5, finConstr: 32.4, tradeConstr: 7.3, trainRate: 26.6, gdp: 20475 },
+            { code: 'BIH', name: 'Bosnia and Herzegovina', region: 'Europe & Central Asia', overall: 67.4, entry: 87.4, labor: 83.5, finance: 58.0, trade: 73.8, utilities: 60.8, taxation: 51.0, disputes: 65.6, vulnEmp: 18.8, laborConstr: 22.5, finConstr: 37.8, tradeConstr: 1.9, trainRate: 20.5, gdp: 6698 },
+            { code: 'BWA', name: 'Botswana', region: 'Sub-Saharan Africa', overall: 66.0, entry: 96.3, labor: 73.9, finance: 81.6, trade: 74.3, utilities: 51.4, taxation: 35.0, disputes: 79.0, vulnEmp: 28.8, laborConstr: 30.2, finConstr: 35.8, tradeConstr: 3.6, trainRate: 20.9, gdp: 6937 },
+            { code: 'BGR', name: 'Bulgaria', region: 'Europe & Central Asia', overall: 76.3, entry: 93.8, labor: 80.7, finance: 77.2, trade: 86.4, utilities: 88.4, taxation: 46.5, disputes: 76.2, vulnEmp: 7.2, laborConstr: 18.2, finConstr: 27.4, tradeConstr: 2.2, trainRate: 22.7, gdp: 10090 },
+            { code: 'KHM', name: 'Cambodia', region: 'East Asia & Pacific', overall: 62.8, entry: 81.6, labor: 80.7, finance: 81.9, trade: 60.0, utilities: 56.6, taxation: 50.1, disputes: 72.6, vulnEmp: 52.6, laborConstr: 11.1, finConstr: 85.1, tradeConstr: 9.0, trainRate: 12.6, gdp: 2184 },
+            { code: 'CAF', name: 'Central African Republic', region: 'Sub-Saharan Africa', overall: 61.0, entry: 72.8, labor: 45.9, finance: 77.9, trade: 54.6, utilities: 63.4, taxation: 26.0, disputes: 67.1, vulnEmp: 93.3, laborConstr: 8.4, finConstr: 75.9, tradeConstr: 1.9, trainRate: 8.4, gdp: 390 },
+            { code: 'TCD', name: 'Chad', region: 'Sub-Saharan Africa', overall: 61.2, entry: 77.9, labor: 52.6, finance: 76.3, trade: 69.7, utilities: 53.8, taxation: 30.8, disputes: 83.4, vulnEmp: 90.0, laborConstr: 11.1, finConstr: 89.1, tradeConstr: 2.4, trainRate: 21.1, gdp: 917 },
+            { code: 'COL', name: 'Colombia', region: 'Latin America & Caribbean', overall: 76.6, entry: 96.6, labor: 67.4, finance: 79.1, trade: 82.0, utilities: 69.0, taxation: 54.0, disputes: 81.3, vulnEmp: 43.8, laborConstr: 24.1, finConstr: 63.4, tradeConstr: 17.8, trainRate: 22.8, gdp: 6873 },
+            { code: 'CRI', name: 'Costa Rica', region: 'Latin America & Caribbean', overall: 71.3, entry: 82.5, labor: 74.3, finance: 76.8, trade: 74.4, utilities: 74.4, taxation: 40.6, disputes: 83.4, vulnEmp: 24.2, laborConstr: 18.9, finConstr: 52.8, tradeConstr: 13.2, trainRate: 27.5, gdp: 14867 },
+            { code: 'CIV', name: "Côte d'Ivoire", region: 'Sub-Saharan Africa', overall: 68.1, entry: 87.6, labor: 80.9, finance: 53.5, trade: 77.1, utilities: 77.4, taxation: 46.0, disputes: 72.9, vulnEmp: 76.2, laborConstr: 6.9, finConstr: 68.7, tradeConstr: 23.1, trainRate: 18.7, gdp: 2579 },
+            { code: 'HRV', name: 'Croatia', region: 'Europe & Central Asia', overall: 73.5, entry: 80.8, labor: 87.4, finance: 73.9, trade: 79.9, utilities: 88.8, taxation: 31.5, disputes: 82.3, vulnEmp: 8.8, laborConstr: 25.7, finConstr: 57.4, tradeConstr: 1.8, trainRate: 22.5, gdp: 14859 },
+            { code: 'SLV', name: 'El Salvador', region: 'Latin America & Caribbean', overall: 60.4, entry: 62.2, labor: 60.3, finance: 70.2, trade: 78.9, utilities: 57.4, taxation: 47.8, disputes: 65.4, vulnEmp: 42.5, laborConstr: 16.6, finConstr: 47.7, tradeConstr: 17.1, trainRate: 31.4, gdp: 4986 },
+            { code: 'EST', name: 'Estonia', region: 'Europe & Central Asia', overall: 72.9, entry: 92.5, labor: 69.8, finance: 70.8, trade: 82.4, utilities: 62.2, taxation: 71.8, disputes: 78.2, vulnEmp: 5.4, laborConstr: 10.2, finConstr: 45.6, tradeConstr: 1.9, trainRate: 26.7, gdp: 23757 },
+            { code: 'GMB', name: 'Gambia', region: 'Sub-Saharan Africa', overall: 53.3, entry: 78.8, labor: 66.9, finance: 56.4, trade: 65.0, utilities: 36.5, taxation: 49.5, disputes: 68.2, vulnEmp: 76.9, laborConstr: 34.4, finConstr: 59.2, tradeConstr: 5.5, trainRate: 22.3, gdp: 840 },
+            { code: 'GEO', name: 'Georgia', region: 'Europe & Central Asia', overall: 77.7, entry: 83.8, labor: 84.2, finance: 76.4, trade: 77.9, utilities: 81.5, taxation: 66.5, disputes: 85.0, vulnEmp: 44.5, laborConstr: 6.3, finConstr: 7.8, tradeConstr: 7.2, trainRate: 24.9, gdp: 5023 },
+            { code: 'GHA', name: 'Ghana', region: 'Sub-Saharan Africa', overall: 66.8, entry: 71.9, labor: 60.5, finance: 75.1, trade: 66.1, utilities: 74.5, taxation: 50.5, disputes: 69.2, vulnEmp: 63.7, laborConstr: 23.4, finConstr: 76.4, tradeConstr: 20.6, trainRate: 21.5, gdp: 2363 },
+            { code: 'GRC', name: 'Greece', region: 'Europe & Central Asia', overall: 75.7, entry: 96.3, labor: 76.8, finance: 65.3, trade: 81.5, utilities: 76.7, taxation: 57.5, disputes: 83.3, vulnEmp: 24.1, laborConstr: 4.5, finConstr: 69.2, tradeConstr: 6.1, trainRate: 24.9, gdp: 20867 },
+            { code: 'HKG', name: 'Hong Kong SAR', region: 'East Asia & Pacific', overall: 72.5, entry: 91.9, labor: 69.7, finance: 80.3, trade: 85.5, utilities: 68.1, taxation: 67.0, disputes: 74.6, vulnEmp: 7.1, laborConstr: 3.9, finConstr: 12.6, tradeConstr: 2.4, trainRate: 37.5, gdp: 49225 },
+            { code: 'HUN', name: 'Hungary', region: 'Europe & Central Asia', overall: 78.3, entry: 85.0, labor: 80.2, finance: 99.4, trade: 86.4, utilities: 75.8, taxation: 40.8, disputes: 87.3, vulnEmp: 5.4, laborConstr: 14.7, finConstr: 76.2, tradeConstr: 1.9, trainRate: 24.9, gdp: 16580 },
+            { code: 'IDN', name: 'Indonesia', region: 'East Asia & Pacific', overall: 63.9, entry: 80.4, labor: 67.4, finance: 69.4, trade: 69.0, utilities: 60.0, taxation: 66.8, disputes: 56.1, vulnEmp: 52.9, laborConstr: 12.3, finConstr: 56.4, tradeConstr: 6.6, trainRate: 18.7, gdp: 4332 },
+            { code: 'IRQ', name: 'Iraq', region: 'Middle East & North Africa', overall: 49.3, entry: 78.8, labor: 77.7, finance: 69.3, trade: 48.1, utilities: 53.1, taxation: 12.8, disputes: 50.4, vulnEmp: 31.2, laborConstr: 28.2, finConstr: 40.7, tradeConstr: 8.1, trainRate: 21.9, gdp: 5049 },
+            { code: 'KGZ', name: 'Kyrgyz Republic', region: 'Europe & Central Asia', overall: 65.3, entry: 81.0, labor: 60.1, finance: 70.8, trade: 64.5, utilities: 73.3, taxation: 36.5, disputes: 74.6, vulnEmp: 63.1, laborConstr: 25.6, finConstr: 53.8, tradeConstr: 1.4, trainRate: 18.9, gdp: 1309 },
+            { code: 'LSO', name: 'Lesotho', region: 'Sub-Saharan Africa', overall: 54.9, entry: 74.1, labor: 70.0, finance: 60.9, trade: 58.6, utilities: 57.3, taxation: 47.5, disputes: 62.4, vulnEmp: 45.9, laborConstr: 19.8, finConstr: 21.3, tradeConstr: 13.9, trainRate: 34.7, gdp: 1169 },
+            { code: 'MDG', name: 'Madagascar', region: 'Sub-Saharan Africa', overall: 57.3, entry: 78.2, labor: 64.9, finance: 47.9, trade: 66.4, utilities: 49.6, taxation: 46.3, disputes: 58.8, vulnEmp: 87.9, laborConstr: 17.4, finConstr: 48.1, tradeConstr: 30.2, trainRate: 21.6, gdp: 496 },
+            { code: 'MUS', name: 'Mauritius', region: 'Sub-Saharan Africa', overall: 64.6, entry: 77.8, labor: 75.1, finance: 78.1, trade: 73.1, utilities: 36.5, taxation: 48.0, disputes: 55.3, vulnEmp: 12.9, laborConstr: 18.2, finConstr: 57.7, tradeConstr: 7.0, trainRate: 40.6, gdp: 10216 },
+            { code: 'MEX', name: 'Mexico', region: 'Latin America & Caribbean', overall: 75.0, entry: 90.4, labor: 69.2, finance: 89.0, trade: 77.9, utilities: 63.9, taxation: 63.0, disputes: 87.4, vulnEmp: 31.9, laborConstr: 6.3, finConstr: 69.4, tradeConstr: 4.0, trainRate: 28.6, gdp: 10046 },
+            { code: 'MNE', name: 'Montenegro', region: 'Europe & Central Asia', overall: 72.5, entry: 95.0, labor: 80.2, finance: 63.8, trade: 78.3, utilities: 78.3, taxation: 47.3, disputes: 78.1, vulnEmp: 16.9, laborConstr: 25.5, finConstr: 90.8, tradeConstr: 1.2, trainRate: 18.8, gdp: 8829 },
+            { code: 'MAR', name: 'Morocco', region: 'Middle East & North Africa', overall: 68.9, entry: 94.1, labor: 57.6, finance: 73.7, trade: 76.1, utilities: 70.7, taxation: 54.3, disputes: 56.0, vulnEmp: 35.1, laborConstr: 32.4, finConstr: 76.3, tradeConstr: 3.5, trainRate: 21.4, gdp: 3440 },
+            { code: 'NPL', name: 'Nepal', region: 'South Asia', overall: 59.3, entry: 75.0, labor: 72.7, finance: 84.6, trade: 50.3, utilities: 58.6, taxation: 49.8, disputes: 69.7, vulnEmp: 78.2, laborConstr: 29.4, finConstr: 77.6, tradeConstr: 2.9, trainRate: 15.9, gdp: 1336 },
+            { code: 'NZL', name: 'New Zealand', region: 'East Asia & Pacific', overall: 67.5, entry: 77.5, labor: 68.2, finance: 77.5, trade: 79.3, utilities: 57.0, taxation: 75.0, disputes: 55.9, vulnEmp: 11.7, laborConstr: 10.6, finConstr: 46.3, tradeConstr: 4.9, trainRate: 30.0, gdp: 44378 },
+            { code: 'MKD', name: 'North Macedonia', region: 'Europe & Central Asia', overall: 70.0, entry: 95.0, labor: 76.8, finance: 73.7, trade: 60.6, utilities: 75.1, taxation: 44.0, disputes: 71.8, vulnEmp: 15.9, laborConstr: 26.8, finConstr: 85.6, tradeConstr: 3.5, trainRate: 12.9, gdp: 6022 },
+            { code: 'PAK', name: 'Pakistan', region: 'South Asia', overall: 59.1, entry: 90.0, labor: 61.3, finance: 83.3, trade: 60.6, utilities: 46.0, taxation: 31.3, disputes: 58.0, vulnEmp: 58.2, laborConstr: 32.4, finConstr: 81.1, tradeConstr: 18.6, trainRate: 13.9, gdp: 1505 },
+            { code: 'PRY', name: 'Paraguay', region: 'Latin America & Caribbean', overall: 60.9, entry: 91.2, labor: 74.6, finance: 59.9, trade: 77.0, utilities: 37.7, taxation: 34.3, disputes: 84.7, vulnEmp: 41.6, laborConstr: 18.9, finConstr: 74.7, tradeConstr: 16.4, trainRate: 16.7, gdp: 5892 },
+            { code: 'PER', name: 'Peru', region: 'Latin America & Caribbean', overall: 69.6, entry: 77.5, labor: 61.4, finance: 83.7, trade: 79.5, utilities: 72.9, taxation: 50.5, disputes: 68.6, vulnEmp: 49.5, laborConstr: 12.9, finConstr: 55.3, tradeConstr: 5.4, trainRate: 25.7, gdp: 7002 },
+            { code: 'PHL', name: 'Philippines', region: 'East Asia & Pacific', overall: 70.8, entry: 88.5, labor: 70.5, finance: 77.9, trade: 62.8, utilities: 78.6, taxation: 57.8, disputes: 80.6, vulnEmp: 34.2, laborConstr: 23.7, finConstr: 28.6, tradeConstr: 27.5, trainRate: 26.7, gdp: 3461 },
+            { code: 'PRT', name: 'Portugal', region: 'Europe & Central Asia', overall: 78.2, entry: 95.0, labor: 88.2, finance: 72.3, trade: 88.9, utilities: 70.1, taxation: 56.0, disputes: 90.0, vulnEmp: 9.9, laborConstr: 7.4, finConstr: 29.1, tradeConstr: 7.7, trainRate: 29.0, gdp: 22479 },
+            { code: 'RWA', name: 'Rwanda', region: 'Sub-Saharan Africa', overall: 70.4, entry: 87.5, labor: 65.3, finance: 86.6, trade: 66.2, utilities: 65.2, taxation: 51.3, disputes: 79.8, vulnEmp: 72.8, laborConstr: 5.2, finConstr: 51.9, tradeConstr: 7.3, trainRate: 32.3, gdp: 822 },
+            { code: 'WSM', name: 'Samoa', region: 'East Asia & Pacific', overall: 57.1, entry: 66.3, labor: 83.8, finance: 72.5, trade: 54.3, utilities: 64.3, taxation: 55.0, disputes: 48.1, vulnEmp: 46.4, laborConstr: 21.6, finConstr: 41.2, tradeConstr: 4.1, trainRate: 28.9, gdp: 4067 },
+            { code: 'SYC', name: 'Seychelles', region: 'Sub-Saharan Africa', overall: 58.8, entry: 81.0, labor: 67.4, finance: 74.2, trade: 65.3, utilities: 56.9, taxation: 59.0, disputes: 48.5, vulnEmp: 7.7, laborConstr: 33.0, finConstr: 43.3, tradeConstr: 5.4, trainRate: 50.2, gdp: 18382 },
+            { code: 'SLE', name: 'Sierra Leone', region: 'Sub-Saharan Africa', overall: 54.1, entry: 73.8, labor: 61.1, finance: 68.5, trade: 47.4, utilities: 53.1, taxation: 34.0, disputes: 60.6, vulnEmp: 86.7, laborConstr: 18.9, finConstr: 83.0, tradeConstr: 2.4, trainRate: 27.9, gdp: 527 },
+            { code: 'SGP', name: 'Singapore', region: 'East Asia & Pacific', overall: 72.5, entry: 87.7, labor: 67.2, finance: 74.1, trade: 78.9, utilities: 74.7, taxation: 59.4, disputes: 63.0, vulnEmp: 8.5, laborConstr: 6.6, finConstr: 42.6, tradeConstr: 4.1, trainRate: 61.9, gdp: 65233 },
+            { code: 'SVK', name: 'Slovak Republic', region: 'Europe & Central Asia', overall: 77.4, entry: 90.6, labor: 84.0, finance: 69.4, trade: 84.3, utilities: 91.7, taxation: 55.4, disputes: 79.4, vulnEmp: 8.7, laborConstr: 10.7, finConstr: 64.8, tradeConstr: 2.6, trainRate: 26.0, gdp: 20192 },
+            { code: 'TZA', name: 'Tanzania', region: 'Sub-Saharan Africa', overall: 65.1, entry: 87.2, labor: 72.2, finance: 76.5, trade: 52.9, utilities: 75.6, taxation: 52.3, disputes: 71.5, vulnEmp: 77.6, laborConstr: 13.4, finConstr: 36.5, tradeConstr: 6.5, trainRate: 24.3, gdp: 1135 },
+            { code: 'TLS', name: 'Timor-Leste', region: 'East Asia & Pacific', overall: 46.2, entry: 85.8, labor: 68.6, finance: 30.2, trade: 46.5, utilities: 60.1, taxation: 37.3, disputes: 60.4, vulnEmp: 59.6, laborConstr: 9.0, finConstr: 47.3, tradeConstr: 6.7, trainRate: 14.6, gdp: 1560 },
+            { code: 'TGO', name: 'Togo', region: 'Sub-Saharan Africa', overall: 69.0, entry: 77.9, labor: 59.4, finance: 61.5, trade: 71.1, utilities: 71.0, taxation: 43.8, disputes: 94.6, vulnEmp: 86.2, laborConstr: 7.2, finConstr: 43.2, tradeConstr: 4.4, trainRate: 20.9, gdp: 858 },
+            { code: 'VUT', name: 'Vanuatu', region: 'East Asia & Pacific', overall: 50.5, entry: 71.3, labor: 50.0, finance: 54.9, trade: 44.9, utilities: 47.7, taxation: 51.0, disputes: 47.3, vulnEmp: 57.5, laborConstr: 37.1, finConstr: 48.3, tradeConstr: 8.4, trainRate: 21.4, gdp: 2695 },
+            { code: 'VNM', name: 'Vietnam', region: 'East Asia & Pacific', overall: 66.8, entry: 72.2, labor: 68.7, finance: 41.4, trade: 80.1, utilities: 74.2, taxation: 33.5, disputes: 79.9, vulnEmp: 51.2, laborConstr: 8.2, finConstr: 33.8, tradeConstr: 4.0, trainRate: 17.3, gdp: 4018 },
+            { code: 'PSE', name: 'West Bank and Gaza', region: 'Middle East & North Africa', overall: 47.5, entry: 85.0, labor: 63.7, finance: 59.0, trade: 55.4, utilities: 51.9, taxation: 0.0, disputes: 52.8, vulnEmp: 19.1, laborConstr: 25.0, finConstr: 45.0, tradeConstr: 12.0, trainRate: 18.0, gdp: 3789 }
+        ];
+
+        const scatterData = countryData.map(d => ({ name: d.name, x: d.labor, y: d.vulnEmp }));
+
+        const correlationData = [
+            { outcome: 'Vulnerable Emp', overall: -0.51, entry: -0.46, labor: -0.54, finance: -0.21, trade: -0.56, utilities: -0.29 },
+            { outcome: 'Labor Constraint', overall: 0.16, entry: 0.30, labor: -0.17, finance: 0.17, trade: 0.17, utilities: -0.01 },
+            { outcome: 'Finance Constraint', overall: -0.40, entry: -0.22, labor: -0.43, finance: -0.04, trade: -0.42, utilities: -0.25 },
+            { outcome: 'Training Rate', overall: 0.32, entry: 0.08, labor: -0.03, finance: 0.16, trade: 0.32, utilities: 0.14 },
+            { outcome: 'Quality Cert', overall: 0.63, entry: 0.40, labor: 0.45, finance: 0.17, trade: 0.61, utilities: 0.47 }
+        ];
+
+        const barData = [
+            { name: 'Business Entry', value: 83.4 },
+            { name: 'Disputes', value: 70.8 },
+            { name: 'Labor', value: 70.2 },
+            { name: 'Trade', value: 69.5 },
+            { name: 'Finance', value: 69.8 },
+            { name: 'Utilities', value: 63.1 },
+            { name: 'Taxation', value: 45.2 }
+        ];
+
+        // Calculate averages for comparison
+        const avgData = {
+            overall: d3.mean(countryData, d => d.overall),
+            entry: d3.mean(countryData, d => d.entry),
+            labor: d3.mean(countryData, d => d.labor),
+            finance: d3.mean(countryData, d => d.finance),
+            trade: d3.mean(countryData, d => d.trade),
+            utilities: d3.mean(countryData, d => d.utilities),
+            taxation: d3.mean(countryData, d => d.taxation),
+            disputes: d3.mean(countryData, d => d.disputes),
+            vulnEmp: d3.mean(countryData, d => d.vulnEmp),
+            gdp: d3.mean(countryData, d => d.gdp)
+        };
+
+        const tooltip = d3.select('#tooltip');
+        const wbBlue = '#002244';
+        const wbBlueLight = '#009FDA';
+
+        // Populate country selector
+        const countrySelect = document.getElementById('country-select');
+        const sortedCountries = [...countryData].sort((a, b) => a.name.localeCompare(b.name));
+        
+        countrySelect.innerHTML = '<option value="">— Select an economy —</option>' +
+            sortedCountries.map(c => `<option value="${c.code}">${c.name}</option>`).join('');
+
+        countrySelect.addEventListener('change', function() {
+            const country = countryData.find(c => c.code === this.value);
+            if (country) updateCountryProfile(country);
+        });
+
+        // Update country profile
+        function updateCountryProfile(country) {
+            const rank = [...countryData].sort((a, b) => b.overall - a.overall).findIndex(c => c.code === country.code) + 1;
+            
+            document.getElementById('profile-name').textContent = country.name;
+            document.getElementById('profile-region').textContent = country.region;
+            document.getElementById('profile-rank').innerHTML = `
+                <div class="profile-rank-number">#${rank}</div>
+                <div class="profile-rank-label">of 51 economies</div>
+            `;
+            
+            document.getElementById('metric-overall').textContent = country.overall.toFixed(1);
+            document.getElementById('metric-vuln').textContent = country.vulnEmp.toFixed(1) + '%';
+            document.getElementById('metric-gdp').textContent = '$' + country.gdp.toLocaleString();
+            
+            document.getElementById('bar-overall').style.width = country.overall + '%';
+            document.getElementById('bar-vuln').style.width = country.vulnEmp + '%';
+
+            // Dimension bars
+            const dimensions = [
+                { key: 'entry', name: 'Entry' },
+                { key: 'labor', name: 'Labor' },
+                { key: 'finance', name: 'Finance' },
+                { key: 'trade', name: 'Trade' },
+                { key: 'utilities', name: 'Utilities' },
+                { key: 'taxation', name: 'Taxation' },
+                { key: 'disputes', name: 'Disputes' }
+            ];
+
+            document.getElementById('dimension-bars').innerHTML = dimensions.map(dim => `
+                <div class="dimension-row">
+                    <div class="dimension-name">${dim.name}</div>
+                    <div class="dimension-bar-container">
+                        <div class="dimension-bar-fill" style="width: ${country[dim.key]}%"></div>
+                        <div class="dimension-bar-avg" style="left: ${avgData[dim.key]}%"></div>
+                    </div>
+                    <div class="dimension-value">${country[dim.key].toFixed(1)}</div>
+                </div>
+            `).join('');
+
+            // Outcomes grid
+            document.getElementById('outcomes-grid').innerHTML = `
+                <div class="outcome-item">
+                    <div class="outcome-value">${country.laborConstr.toFixed(1)}</div>
+                    <div class="outcome-label">Labor Constraint</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-value">${country.finConstr.toFixed(1)}</div>
+                    <div class="outcome-label">Finance Constraint</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-value">${country.tradeConstr.toFixed(1)}</div>
+                    <div class="outcome-label">Trade Constraint</div>
+                </div>
+                <div class="outcome-item">
+                    <div class="outcome-value">${country.trainRate.toFixed(1)}%</div>
+                    <div class="outcome-label">Training Rate</div>
+                </div>
+            `;
+
+            // Draw radar chart
+            drawRadar(country);
+        }
+
+        // Radar chart
+        function drawRadar(country) {
+            const container = d3.select('#radar-container');
+            const width = container.node().clientWidth;
+            const height = 320;
+            const margin = 60;
+            const radius = Math.min(width, height) / 2 - margin;
+
+            container.selectAll('*').remove();
+
+            const svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', `translate(${width/2},${height/2})`);
+
+            const dimensions = ['entry', 'labor', 'finance', 'trade', 'utilities', 'taxation'];
+            const labels = ['Entry', 'Labor', 'Finance', 'Trade', 'Utilities', 'Taxation'];
+            const angleSlice = Math.PI * 2 / dimensions.length;
+
+            // Scales
+            const rScale = d3.scaleLinear().domain([0, 100]).range([0, radius]);
+
+            // Grid circles
+            const levels = 5;
+            for (let i = 1; i <= levels; i++) {
+                svg.append('circle')
+                    .attr('r', radius * i / levels)
+                    .attr('fill', 'none')
+                    .attr('stroke', '#E5E5E5')
+                    .attr('stroke-width', 1);
+            }
+
+            // Axes
+            dimensions.forEach((dim, i) => {
+                const angle = angleSlice * i - Math.PI / 2;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+
+                svg.append('line')
+                    .attr('x1', 0).attr('y1', 0)
+                    .attr('x2', x).attr('y2', y)
+                    .attr('stroke', '#E5E5E5')
+                    .attr('stroke-width', 1);
+
+                svg.append('text')
+                    .attr('x', Math.cos(angle) * (radius + 20))
+                    .attr('y', Math.sin(angle) * (radius + 20))
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
+                    .attr('fill', '#737373')
+                    .attr('font-size', '0.75rem')
+                    .text(labels[i]);
+            });
+
+            // Average polygon
+            const avgLine = d3.lineRadial()
+                .radius(d => rScale(avgData[d]))
+                .angle((d, i) => i * angleSlice)
+                .curve(d3.curveLinearClosed);
+
+            svg.append('path')
+                .datum(dimensions)
+                .attr('d', avgLine)
+                .attr('fill', wbBlueLight)
+                .attr('fill-opacity', 0.1)
+                .attr('stroke', wbBlueLight)
+                .attr('stroke-width', 1)
+                .attr('stroke-dasharray', '4,4');
+
+            // Country polygon
+            const countryLine = d3.lineRadial()
+                .radius(d => rScale(country[d]))
+                .angle((d, i) => i * angleSlice)
+                .curve(d3.curveLinearClosed);
+
+            svg.append('path')
+                .datum(dimensions)
+                .attr('d', countryLine)
+                .attr('fill', wbBlue)
+                .attr('fill-opacity', 0.2)
+                .attr('stroke', wbBlue)
+                .attr('stroke-width', 2);
+
+            // Points
+            dimensions.forEach((dim, i) => {
+                const angle = angleSlice * i - Math.PI / 2;
+                const r = rScale(country[dim]);
+                svg.append('circle')
+                    .attr('cx', Math.cos(angle) * r)
+                    .attr('cy', Math.sin(angle) * r)
+                    .attr('r', 4)
+                    .attr('fill', wbBlue);
+            });
+
+            // Legend
+            svg.append('circle').attr('cx', -radius + 10).attr('cy', radius - 30).attr('r', 5).attr('fill', wbBlue);
+            svg.append('text').attr('x', -radius + 22).attr('y', radius - 26).attr('fill', '#737373').attr('font-size', '0.7rem').text(country.name);
+            
+            svg.append('line').attr('x1', -radius + 5).attr('y1', radius - 10).attr('x2', -radius + 15).attr('y2', radius - 10)
+                .attr('stroke', wbBlueLight).attr('stroke-dasharray', '4,4');
+            svg.append('text').attr('x', -radius + 22).attr('y', radius - 6).attr('fill', '#737373').attr('font-size', '0.7rem').text('Average');
+        }
+
+        // Ranking chart
+        let currentSort = 'overall';
+
+        function drawRanking(sortKey) {
+            const container = d3.select('#ranking-container');
+            const width = container.node().clientWidth;
+            const height = 600;
+            const margin = { top: 20, right: 120, bottom: 20, left: 160 };
+
+            container.selectAll('*').remove();
+
+            const svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            let sortedData;
+            let maxVal = 100;
+            let label = '';
+
+            if (sortKey === 'overall') {
+                sortedData = [...countryData].sort((a, b) => b.overall - a.overall).slice(0, 20);
+                label = 'Overall Score';
+            } else if (sortKey === 'labor') {
+                sortedData = [...countryData].sort((a, b) => b.labor - a.labor).slice(0, 20);
+                label = 'Labor Regulation';
+            } else if (sortKey === 'vulnEmp') {
+                sortedData = [...countryData].sort((a, b) => a.vulnEmp - b.vulnEmp).slice(0, 20);
+                label = 'Vulnerable Employment (%)';
+            } else if (sortKey === 'gdp') {
+                sortedData = [...countryData].sort((a, b) => b.gdp - a.gdp).slice(0, 20);
+                maxVal = d3.max(sortedData, d => d.gdp);
+                label = 'GDP per Capita ($)';
+            }
+
+            const x = d3.scaleLinear()
+                .domain([0, maxVal])
+                .range([margin.left, width - margin.right]);
+
+            const y = d3.scaleBand()
+                .domain(sortedData.map(d => d.name))
+                .range([margin.top, height - margin.bottom])
+                .padding(0.25);
+
+            // Grid
+            svg.append('g')
+                .call(d3.axisTop(x).ticks(5).tickSize(-height + margin.top + margin.bottom))
+                .attr('transform', `translate(0,${margin.top})`)
+                .call(g => g.select('.domain').remove())
+                .call(g => g.selectAll('.tick line').attr('stroke', '#E5E5E5'))
+                .call(g => g.selectAll('.tick text').attr('fill', '#737373').attr('font-size', '0.75rem'));
+
+            // Country labels
+            svg.selectAll('.country-label')
+                .data(sortedData)
+                .join('text')
+                .attr('x', margin.left - 12)
+                .attr('y', d => y(d.name) + y.bandwidth() / 2 + 4)
+                .attr('text-anchor', 'end')
+                .attr('fill', '#404040')
+                .attr('font-size', '0.8rem')
+                .text(d => d.name);
+
+            // Bars
+            svg.selectAll('.bar')
+                .data(sortedData)
+                .join('rect')
+                .attr('x', margin.left)
+                .attr('y', d => y(d.name))
+                .attr('width', d => x(d[sortKey]) - margin.left)
+                .attr('height', y.bandwidth())
+                .attr('fill', (d, i) => i < 3 ? wbBlue : '#A3A3A3');
+
+            // Values
+            svg.selectAll('.value-label')
+                .data(sortedData)
+                .join('text')
+                .attr('x', d => x(d[sortKey]) + 8)
+                .attr('y', d => y(d.name) + y.bandwidth() / 2 + 4)
+                .attr('fill', '#737373')
+                .attr('font-size', '0.75rem')
+                .text(d => sortKey === 'gdp' ? '$' + d[sortKey].toLocaleString() : d[sortKey].toFixed(1));
+        }
+
+        // Ranking button handlers
+        document.querySelectorAll('.ranking-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.ranking-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentSort = this.dataset.sort;
+                drawRanking(currentSort);
+            });
+        });
+
+        // Scatter Plot
+        function drawScatter() {
+            const container = d3.select('#scatter-container');
+            const width = container.node().clientWidth;
+            const height = 500;
+            const margin = { top: 40, right: 40, bottom: 60, left: 60 };
+
+            container.selectAll('*').remove();
+
+            const svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            const x = d3.scaleLinear()
+                .domain([40, 95])
+                .range([margin.left, width - margin.right]);
+
+            const y = d3.scaleLinear()
+                .domain([0, 100])
+                .range([height - margin.bottom, margin.top]);
+
+            // Grid
+            svg.append('g')
+                .attr('transform', `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(x).ticks(6).tickSize(-height + margin.top + margin.bottom))
+                .call(g => g.select('.domain').remove())
+                .call(g => g.selectAll('.tick line').attr('stroke', '#E5E5E5'))
+                .call(g => g.selectAll('.tick text').attr('fill', '#737373').attr('dy', 16));
+
+            svg.append('g')
+                .attr('transform', `translate(${margin.left},0)`)
+                .call(d3.axisLeft(y).ticks(5).tickSize(-width + margin.left + margin.right))
+                .call(g => g.select('.domain').remove())
+                .call(g => g.selectAll('.tick line').attr('stroke', '#E5E5E5'))
+                .call(g => g.selectAll('.tick text').attr('fill', '#737373').attr('dx', -8));
+
+            // Trend line
+            const xVals = scatterData.map(d => d.x);
+            const yVals = scatterData.map(d => d.y);
+            const n = scatterData.length;
+            const sumX = d3.sum(xVals);
+            const sumY = d3.sum(yVals);
+            const sumXY = d3.sum(scatterData, d => d.x * d.y);
+            const sumX2 = d3.sum(xVals, d => d * d);
+            const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+            const intercept = (sumY - slope * sumX) / n;
+
+            svg.append('line')
+                .attr('x1', x(45))
+                .attr('y1', y(slope * 45 + intercept))
+                .attr('x2', x(90))
+                .attr('y2', y(slope * 90 + intercept))
+                .attr('stroke', wbBlueLight)
+                .attr('stroke-width', 2)
+                .attr('stroke-dasharray', '8,4')
+                .attr('opacity', 0.6);
+
+            // Points
+            svg.selectAll('circle')
+                .data(scatterData)
+                .join('circle')
+                .attr('cx', d => x(d.x))
+                .attr('cy', d => y(d.y))
+                .attr('r', 6)
+                .attr('fill', wbBlue)
+                .attr('opacity', 0.7)
+                .attr('cursor', 'pointer')
+                .on('mouseover', function(event, d) {
+                    d3.select(this).attr('r', 9).attr('opacity', 1);
+                    tooltip.style('opacity', 1)
+                        .style('left', (event.pageX + 12) + 'px')
+                        .style('top', (event.pageY - 12) + 'px')
+                        .html(`<div class="tooltip-title">${d.name}</div>
+                               <div class="tooltip-value">Labor Reg: ${d.x.toFixed(1)}<br>Vulnerable Emp: ${d.y.toFixed(1)}%</div>`);
+                })
+                .on('mouseout', function() {
+                    d3.select(this).attr('r', 6).attr('opacity', 0.7);
+                    tooltip.style('opacity', 0);
+                })
+                .on('click', function(event, d) {
+                    const country = countryData.find(c => c.name === d.name);
+                    if (country) {
+                        countrySelect.value = country.code;
+                        updateCountryProfile(country);
+                        document.getElementById('country-profile').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+
+            // Labels
+            svg.append('text')
+                .attr('x', width / 2)
+                .attr('y', height - 10)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#737373')
+                .attr('font-size', '0.85rem')
+                .text('Labor Regulation Quality Score');
+
+            svg.append('text')
+                .attr('transform', 'rotate(-90)')
+                .attr('x', -height / 2)
+                .attr('y', 16)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#737373')
+                .attr('font-size', '0.85rem')
+                .text('Vulnerable Employment (%)');
+        }
+
+        // Heatmap
+        function drawHeatmap() {
+            const container = d3.select('#heatmap-container');
+            const width = container.node().clientWidth;
+            const height = 400;
+            const margin = { top: 60, right: 20, bottom: 20, left: 140 };
+
+            container.selectAll('*').remove();
+
+            const svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            const dims = ['overall', 'entry', 'labor', 'finance', 'trade', 'utilities'];
+            const dimLabels = ['Overall', 'Entry', 'Labor', 'Finance', 'Trade', 'Utilities'];
+            const outcomes = correlationData.map(d => d.outcome);
+
+            const cellWidth = (width - margin.left - margin.right) / dims.length;
+            const cellHeight = (height - margin.top - margin.bottom) / outcomes.length;
+
+            const colorScale = d3.scaleLinear()
+                .domain([-0.6, 0, 0.6])
+                .range(['#166534', '#FAFAFA', '#991B1B']);
+
+            // Column headers
+            svg.selectAll('.col-label')
+                .data(dimLabels)
+                .join('text')
+                .attr('class', 'col-label')
+                .attr('x', (d, i) => margin.left + i * cellWidth + cellWidth / 2)
+                .attr('y', margin.top - 20)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#525252')
+                .attr('font-size', '0.75rem')
+                .attr('font-weight', '600')
+                .text(d => d);
+
+            // Row labels
+            svg.selectAll('.row-label')
+                .data(outcomes)
+                .join('text')
+                .attr('class', 'row-label')
+                .attr('x', margin.left - 12)
+                .attr('y', (d, i) => margin.top + i * cellHeight + cellHeight / 2 + 4)
+                .attr('text-anchor', 'end')
+                .attr('fill', '#525252')
+                .attr('font-size', '0.8rem')
+                .text(d => d);
+
+            // Cells
+            correlationData.forEach((row, i) => {
+                dims.forEach((dim, j) => {
+                    const val = row[dim];
+                    
+                    svg.append('rect')
+                        .attr('x', margin.left + j * cellWidth)
+                        .attr('y', margin.top + i * cellHeight)
+                        .attr('width', cellWidth - 2)
+                        .attr('height', cellHeight - 2)
+                        .attr('fill', colorScale(val))
+                        .attr('rx', 2);
+
+                    svg.append('text')
+                        .attr('x', margin.left + j * cellWidth + cellWidth / 2)
+                        .attr('y', margin.top + i * cellHeight + cellHeight / 2 + 4)
+                        .attr('text-anchor', 'middle')
+                        .attr('fill', Math.abs(val) > 0.35 ? '#fff' : '#404040')
+                        .attr('font-size', '0.8rem')
+                        .attr('font-weight', '500')
+                        .text((val > 0 ? '+' : '') + val.toFixed(2));
+                });
+            });
+        }
+
+        // Bar Chart
+        function drawBar() {
+            const container = d3.select('#bar-container');
+            const width = container.node().clientWidth;
+            const height = 400;
+            const margin = { top: 20, right: 40, bottom: 40, left: 120 };
+
+            container.selectAll('*').remove();
+
+            const svg = container.append('svg')
+                .attr('width', width)
+                .attr('height', height);
+
+            const sortedData = [...barData].sort((a, b) => b.value - a.value);
+
+            const x = d3.scaleLinear()
+                .domain([0, 100])
+                .range([margin.left, width - margin.right]);
+
+            const y = d3.scaleBand()
+                .domain(sortedData.map(d => d.name))
+                .range([margin.top, height - margin.bottom])
+                .padding(0.3);
+
+            // Grid
+            svg.append('g')
+                .attr('transform', `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(x).ticks(5).tickSize(-height + margin.top + margin.bottom))
+                .call(g => g.select('.domain').remove())
+                .call(g => g.selectAll('.tick line').attr('stroke', '#E5E5E5'))
+                .call(g => g.selectAll('.tick text').attr('fill', '#737373'));
+
+            // Labels
+            svg.selectAll('.bar-label')
+                .data(sortedData)
+                .join('text')
+                .attr('x', margin.left - 12)
+                .attr('y', d => y(d.name) + y.bandwidth() / 2 + 4)
+                .attr('text-anchor', 'end')
+                .attr('fill', '#525252')
+                .attr('font-size', '0.85rem')
+                .text(d => d.name);
+
+            // Bars
+            svg.selectAll('.bar')
+                .data(sortedData)
+                .join('rect')
+                .attr('x', margin.left)
+                .attr('y', d => y(d.name))
+                .attr('width', d => x(d.value) - margin.left)
+                .attr('height', y.bandwidth())
+                .attr('fill', (d, i) => i < 3 ? wbBlue : '#A3A3A3');
+
+            // Values
+            svg.selectAll('.bar-value')
+                .data(sortedData)
+                .join('text')
+                .attr('x', d => x(d.value) + 8)
+                .attr('y', d => y(d.name) + y.bandwidth() / 2 + 4)
+                .attr('fill', '#737373')
+                .attr('font-size', '0.8rem')
+                .text(d => d.value.toFixed(1));
+        }
+
+        // Initial draw
+        drawScatter();
+        drawHeatmap();
+        drawBar();
+        drawRanking('overall');
+
+        // Select first country by default
+        const defaultCountry = countryData.find(c => c.code === 'BGR');
+        if (defaultCountry) {
+            countrySelect.value = defaultCountry.code;
+            updateCountryProfile(defaultCountry);
+        }
+
+        // Redraw on resize
+        window.addEventListener('resize', () => {
+            drawScatter();
+            drawHeatmap();
+            drawBar();
+            drawRanking(currentSort);
+            const selectedCountry = countryData.find(c => c.code === countrySelect.value);
+            if (selectedCountry) drawRadar(selectedCountry);
+        });
+    </script>
+</body>
+</html>
