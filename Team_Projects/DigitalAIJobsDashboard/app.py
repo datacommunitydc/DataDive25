@@ -408,7 +408,7 @@ def get_country_iso3_mapping():
 
 
 def create_choropleth_map(df, value_col, title, color_scale="Viridis", reverse=False, selected_countries=None):
-    """Create a choropleth map using plotly."""
+    """Create an enhanced choropleth map styled like Anthropic Economic Index."""
     # Map country codes to ISO-3
     iso_mapping = get_country_iso3_mapping()
     df = df.copy()
@@ -424,44 +424,104 @@ def create_choropleth_map(df, value_col, title, color_scale="Viridis", reverse=F
     if df.empty:
         return None
     
-    # Create color scale
+    # Create enhanced color scales (more like Anthropic's style)
     if color_scale == "Gap":
-        colorscale = [[0, '#e74c3c'], [0.5, '#f39c12'], [1, '#2ecc71']]  # Red-Yellow-Green
+        # Red-Yellow-Green diverging scale
+        colorscale = [
+            [0, '#d73027'],      # Red (negative gap)
+            [0.25, '#f46d43'],   # Orange-red
+            [0.5, '#fee08b'],    # Yellow (neutral)
+            [0.75, '#abdda4'],   # Light green
+            [1, '#3288bd']       # Blue (positive gap)
+        ]
     elif reverse:
-        colorscale = "Viridis_r"
+        colorscale = "Blues_r"
     else:
-        colorscale = "Viridis"
+        # Modern blue-green scale similar to Anthropic
+        colorscale = [
+            [0, '#e8f4f8'],      # Very light blue
+            [0.2, '#c6e5e8'],    # Light blue
+            [0.4, '#9dd3d8'],    # Medium blue
+            [0.6, '#6bb6c1'],    # Blue-green
+            [0.8, '#3a9ab0'],    # Dark blue-green
+            [1, '#1a7a8f']       # Dark blue
+        ]
     
-    # Create a base map with all countries in gray, then overlay selected countries
+    # Calculate min/max for better color distribution
+    min_val = df[value_col].min()
+    max_val = df[value_col].max()
+    
+    # Create enhanced map
     fig = go.Figure()
     
-    # Add selected countries with data
+    # Add choropleth trace with enhanced styling
     fig.add_trace(go.Choropleth(
         locations=df['iso_alpha'],
         z=df[value_col],
         text=df['country_name'],
         colorscale=colorscale,
         showscale=True,
-        colorbar=dict(title=value_col.replace('_', ' ').title()),
+        colorbar=dict(
+            title=dict(
+                text=value_col.replace('_', ' ').title(),
+                font=dict(size=12, color='#333333')
+            ),
+            thickness=20,
+            len=0.6,
+            x=1.02,
+            xanchor='left',
+            yanchor='middle',
+            tickfont=dict(size=10, color='#666666'),
+            bgcolor='rgba(255,255,255,0.8)',
+            bordercolor='#e0e0e0',
+            borderwidth=1
+        ),
         hovertemplate='<b>%{text}</b><br>' +
-                      f'{value_col.replace("_", " ").title()}: %{{z:.1f}}<extra></extra>',
-        name=''
+                      f'{value_col.replace("_", " ").title()}: %{{z:,.1f}}<br>' +
+                      '<extra></extra>',
+        marker=dict(
+            line=dict(
+                width=0.5,
+                color='rgba(255,255,255,0.8)'
+            )
+        ),
+        zmin=min_val,
+        zmax=max_val
     ))
     
-    # Update layout to focus on selected countries
+    # Enhanced layout styling (inspired by Anthropic Economic Index)
     fig.update_layout(
-        title=title,
-        height=500,
+        title=dict(
+            text=title,
+            font=dict(size=18, color='#1a1a1a', family='Arial, sans-serif'),
+            x=0.5,
+            xanchor='center',
+            y=0.95,
+            yanchor='top'
+        ),
+        height=600,
         geo=dict(
             showframe=False,
             showcoastlines=True,
-            projection_type='natural earth',
-            showcountries=True,
-            countrycolor='lightgray',
+            coastlinecolor='rgba(200,200,200,0.3)',
             showland=True,
-            landcolor='white'
+            landcolor='rgba(250,250,250,1)',
+            showocean=True,
+            oceancolor='rgba(240,248,255,1)',
+            showlakes=True,
+            lakecolor='rgba(240,248,255,1)',
+            projection_type='natural earth',
+            projection=dict(
+                scale=1.1
+            ),
+            bgcolor='rgba(255,255,255,0)',
+            lonaxis=dict(showgrid=False),
+            lataxis=dict(showgrid=False)
         ),
-        margin=dict(l=0, r=0, t=50, b=0)
+        margin=dict(l=0, r=0, t=80, b=0),
+        paper_bgcolor='white',
+        plot_bgcolor='white',
+        font=dict(family='Arial, sans-serif', color='#333333')
     )
     
     return fig
@@ -547,6 +607,14 @@ def main():
         value=(min_year, max_year),
         help="Filter data by year range"
     )
+    
+    # Clear filters button
+    st.sidebar.markdown("---")
+    if st.sidebar.button("🔄 Clear All Filters", use_container_width=True, type="secondary"):
+        st.session_state.clear()
+        st.rerun()
+    
+    st.sidebar.markdown("---")
     
     # Analysis view selector
     view = st.sidebar.radio(
@@ -953,6 +1021,11 @@ def main():
     - ILO Statistics
     - Data360 Indicators
     - World Bank Open Data API
+    - Anthropic EconomicIndex Dataset (Hugging Face)
+    - Stanford AI Index Report 2025
+    - PwC AI Jobs Barometer
+    - Yale Budget Lab - AI Labor Market Research
+    - McKinsey - Economic Potential of Generative AI
     
     📋 For detailed information about all data sources, see `DATA_SOURCES.md`
     
