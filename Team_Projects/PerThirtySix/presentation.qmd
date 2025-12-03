@@ -1,136 +1,52 @@
 ---
-title: "B-READY Insights"
-subtitle: "Exploring Business Regulatory Environment Data"
-author: "PerThirtySix"
-date: "2025"
+title: "Exploring Global Governance"
+subtitle: "An Interactive Data Visualization"
+author: "Shri Khalpada & Rob Moore"
 format:
   revealjs:
-    theme: default
-    slide-number: true
-    preview-links: auto
-    footer: "DataDive 2025 - World Bank"
+    theme: simple
 ---
 
-## Overview
+## Who We Are
 
-Analyzing the **B-READY** (Business Ready) dataset to understand business regulatory environments and their economic impacts.
+**PerThirtySix** - Data visualization and full-stack engineering
 
-. . .
+- **Shri Khalpada**: Principal Software Engineer and Creative Coder | Microsoft, Cleaning the Glass
+- **Rob Moore**: CTO, Data Vis Enthusiast | Oxford, Churnkey.co
 
-Key focus areas:
+Building thoughtful, data-driven explorations.
 
-- Business regulatory framework indicators
-- Cross-dataset correlations with economic outcomes
-- Regional patterns and insights
-- [More findings to come]
+## The Data
 
-## Data Sources
+**World Bank Worldwide Governance Indicators + Business Ready Project**
 
-Primary and supporting datasets:
+- 6 governance dimensions (Government Effectiveness, Rule of Law, etc.)
+- 3 regulatory performance pillars (Framework, Services, Efficiency)
+- 200+ countries
+- Multiple outcome indicators (GDP, life expectancy, literacy, etc.)
 
-- **B-READY (Business Ready)** - Core dataset
-- **World Development Indicators (WDI)**
-- **[Additional datasets TBD]**
+## What We Built
 
-::: {.notes}
-B-READY assesses business regulatory frameworks across multiple dimensions.
-:::
+An interactive explorer combining:
 
-## Methodology
+1. **Data table** with inline visualizations
+2. **D3.js visualizations** - Regulatory Framework vs Public Services
+3. **Custom explorer** - any metric vs any metric, colored by region or income
 
-::: {.incremental}
-1. B-READY data exploration and cleaning
-2. Integration with complementary World Bank datasets
-3. Feature engineering and indicator development
-4. Correlation analysis
-5. [Additional analysis steps TBD]
-:::
+All client-side, real-time, responsive.
 
-## Initial Findings {.smaller}
+## Let's Explore
 
-[Placeholder for key findings]
+*[Demo the live site]*
 
-| Region | B-READY Score | [Metric TBD] | Correlation |
-|--------|---------------|--------------|-------------|
-| TBD | TBD | TBD | TBD |
-
-## Regulatory Environment Impact
-
-[Placeholder for impact analysis]
-
-- 📊 Impact on business formation
-- 💼 Effect on employment
-- 🌍 Cross-border implications
-
-## Cross-Dataset Insights
-
-[Placeholder for multi-dataset analysis]
-
-::: {.fragment}
-*Exploring relationships between regulatory environment and economic indicators*
-:::
-
-## Visualizations
-
-```{python}
-#| echo: false
-#| eval: false
-import altair as alt
-import pandas as pd
-
-# Placeholder for actual data visualization
-# data = pd.read_csv('data/processed_data.csv')
-
-# Sample structure
-data = pd.DataFrame({
-    'Country': ['Country A', 'Country B', 'Country C'],
-    'B-READY Score': [75, 82, 68],
-    'Economic Indicator': [5.5, 6.2, 4.1]
-})
-
-chart = alt.Chart(data).mark_circle(size=100).encode(
-    x='B-READY Score',
-    y='Economic Indicator',
-    tooltip=['Country', 'B-READY Score', 'Economic Indicator']
-).properties(width=500, height=300)
-
-chart
-```
-
-*[Placeholder visualization]*
-
-## Key Insights
-
-::: {.callout-note}
-## Preliminary Observations
-- [Insight 1 TBD]
-- [Insight 2 TBD]
-- [Insight 3 TBD]
-:::
-
-## Recommendations
-
-[Placeholder for policy recommendations]
-
-::: {.callout-tip}
-## Potential Applications
-1. [Recommendation 1 TBD]
-2. [Recommendation 2 TBD]
-3. [Recommendation 3 TBD]
-:::
-
-## Next Steps
-
-- Complete data integration and cleaning
-- Develop comprehensive analytical framework
-- Generate visualizations and statistical models
-- Refine insights and recommendations
+**Key features:**
+- Filter and sort countries by regulatory performance
+- Visualize relationships between governance and outcomes
+- Compare regions and income groups
+- Identify patterns and outliers
 
 ## Questions?
 
-**Contact:**
+View the tool: [perthirtysix.com](https://perthirtysix.com)
 
-- Team PerThirtySix
-- DataDive 2025
-
-Thank you! 📊🌐
+Contact us via LinkedIn or our personal sites.
