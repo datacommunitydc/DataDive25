@@ -6,11 +6,12 @@ Team Upskilling Labs data analysis has conducted a Global Youth Education Analys
 
 ## Team Members
 
-- Ashley
-- Sandra
-- Team Member
-- Team Member
-- Team Member
+- Madhu Jalan
+- Ashley Nalikka
+- Sandra Moscoso
+- Jennifer Kemp
+- Chidubem Nwabunze
+- Tiveeda Stovall
 - Gareth Digby
 
 
