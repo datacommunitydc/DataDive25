@@ -5,26 +5,6 @@ World Bank 2025 DataDive Github repository
 
 Visit www.dc2.org/datadive for details on the challenge questions, suggested data, and day of schedule!
 
-## Repository Structure
-
-```
-DataDive25/
-├── dashboards/          # Interactive HTML dashboards for AI job analysis
-├── data/               # Dataset files
-│   ├── raw/           # Original source data (Excel files)
-│   └── processed/     # Processed datasets
-├── docs/              # Documentation and reports
-├── scripts/           # Python analysis and visualization scripts
-├── Team_Projects/     # Team project submissions
-└── index.html        # Main landing page
-```
-
-## Quick Links
-
-- [View Dashboards](dashboards/dashboard_index.html) - Interactive AI job displacement analysis
-- [Team Projects](Team_Projects/) - Participant project submissions
-- [Documentation](docs/) - Detailed reports and analysis
-
 ## Team Projects
 
 This repository includes an automated GitHub Pages deployment system for team projects. Each team can create their own folder in the `Team_Projects/` directory and add markdown files that will be automatically converted to HTML pages.
