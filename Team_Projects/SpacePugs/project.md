@@ -7,15 +7,16 @@ This challenge examines the relationship between legal gender gaps and women's e
 
 ## Team Members
 
-
+- Alyssa Wang
 - Upasana Pattnaik
 - Kushal Mohnot
-- Max Calzada
 - Lilian Mkandla
-- Upasana Pattnaik
 - Justin Mezetin
 - Alanna Hazlett
-- Alyssa Wang
+- Rukhshona Fatoeva
+- Max Calzada
+- Gordon Blackadder
+
 
 
 ## Challenge Category Area
