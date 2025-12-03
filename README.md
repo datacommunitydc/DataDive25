@@ -11,9 +11,9 @@ This repository includes an automated GitHub Pages deployment system for team pr
 
 ### How It Works
 
-1. **Team Setup**: Create a new folder in `Team_Projects/` named after your team (e.g., `Team_Projects/MyAwesomeTeam/`)
+1. **Team Setup**: Clone the `Team_Projects/SampleTeam` or create a new folder in `Team_Projects/` named after your team (e.g., `Team_Projects/MyAwesomeTeam/`)
 
-2. **Add Content**: Place your markdown files (`.md`) in your team folder. The system supports multiple markdown files per team.
+2. **Add Content**: Update or add your markdown files (`.md`) in your team folder. The system supports multiple markdown files per team.
 
 3. **Automatic Deployment**: When you push changes to the `main` branch, GitHub Actions will:
    - Convert all markdown files to HTML using Pandoc
@@ -53,10 +53,10 @@ See `Team_Projects/SampleTeam/project.md` for an example of a complete team proj
 ### GitHub Pages URL
 
 Once deployed, your team's pages will be available at:
-`https://[username].github.io/[repository]/Team_Projects/[TeamName]/[filename].html`
+`https://datacommunitydc.github.io/DataDive25/`
 
 The main page with all team links will be at:
-`https://[username].github.io/[repository]/`
+`https://datacommunitydc.github.io/DataDive25/index.html`
 
 ### Getting Started
 
