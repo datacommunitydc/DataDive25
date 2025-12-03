@@ -1,0 +1,352 @@
+[
+  {
+    "Economy": "Bangladesh",
+    "Economy Code": "BGD",
+    "Pillar 1 Regulatory Framework": 56.94,
+    "Pillar 2 Public Services": 41.64,
+    "Pillar 3 Operational Efficiency": 70.49
+  },
+  {
+    "Economy": "Barbados",
+    "Economy Code": "BRB",
+    "Pillar 1 Regulatory Framework": 58.77,
+    "Pillar 2 Public Services": 46.4,
+    "Pillar 3 Operational Efficiency": 66.55
+  },
+  {
+    "Economy": "Bosnia and Herzegovina",
+    "Economy Code": "BIH",
+    "Pillar 1 Regulatory Framework": 67.44,
+    "Pillar 2 Public Services": 37.81,
+    "Pillar 3 Operational Efficiency": 70.05
+  },
+  {
+    "Economy": "Botswana",
+    "Economy Code": "BWA",
+    "Pillar 1 Regulatory Framework": 65.96,
+    "Pillar 2 Public Services": 48.52,
+    "Pillar 3 Operational Efficiency": 67.73
+  },
+  {
+    "Economy": "Bulgaria",
+    "Economy Code": "BGR",
+    "Pillar 1 Regulatory Framework": 76.33,
+    "Pillar 2 Public Services": 64.03,
+    "Pillar 3 Operational Efficiency": 74.82
+  },
+  {
+    "Economy": "Cambodia",
+    "Economy Code": "KHM",
+    "Pillar 1 Regulatory Framework": 62.83,
+    "Pillar 2 Public Services": 39.14,
+    "Pillar 3 Operational Efficiency": 60.66
+  },
+  {
+    "Economy": "Central African Republic",
+    "Economy Code": "CAF",
+    "Pillar 1 Regulatory Framework": 60.99,
+    "Pillar 2 Public Services": 18.35,
+    "Pillar 3 Operational Efficiency": 40.36
+  },
+  {
+    "Economy": "Chad",
+    "Economy Code": "TCD",
+    "Pillar 1 Regulatory Framework": 61.15,
+    "Pillar 2 Public Services": 23.51,
+    "Pillar 3 Operational Efficiency": 48.05
+  },
+  {
+    "Economy": "Colombia",
+    "Economy Code": "COL",
+    "Pillar 1 Regulatory Framework": 76.6,
+    "Pillar 2 Public Services": 66.28,
+    "Pillar 3 Operational Efficiency": 66.38
+  },
+  {
+    "Economy": "Costa Rica",
+    "Economy Code": "CRI",
+    "Pillar 1 Regulatory Framework": 71.34,
+    "Pillar 2 Public Services": 63.58,
+    "Pillar 3 Operational Efficiency": 53.66
+  },
+  {
+    "Economy": "Côte d’Ivoire",
+    "Economy Code": "CIV",
+    "Pillar 1 Regulatory Framework": 68.1,
+    "Pillar 2 Public Services": 40.3,
+    "Pillar 3 Operational Efficiency": 50.3
+  },
+  {
+    "Economy": "Croatia",
+    "Economy Code": "HRV",
+    "Pillar 1 Regulatory Framework": 73.53,
+    "Pillar 2 Public Services": 70.24,
+    "Pillar 3 Operational Efficiency": 68.31
+  },
+  {
+    "Economy": "El Salvador",
+    "Economy Code": "SLV",
+    "Pillar 1 Regulatory Framework": 60.41,
+    "Pillar 2 Public Services": 45.36,
+    "Pillar 3 Operational Efficiency": 54.53
+  },
+  {
+    "Economy": "Estonia",
+    "Economy Code": "EST",
+    "Pillar 1 Regulatory Framework": 72.89,
+    "Pillar 2 Public Services": 73.31,
+    "Pillar 3 Operational Efficiency": 80.28
+  },
+  {
+    "Economy": "Gambia, The",
+    "Economy Code": "GMB",
+    "Pillar 1 Regulatory Framework": 53.34,
+    "Pillar 2 Public Services": 20.11,
+    "Pillar 3 Operational Efficiency": 48.44
+  },
+  {
+    "Economy": "Georgia",
+    "Economy Code": "GEO",
+    "Pillar 1 Regulatory Framework": 77.74,
+    "Pillar 2 Public Services": 63.33,
+    "Pillar 3 Operational Efficiency": 84.75
+  },
+  {
+    "Economy": "Ghana",
+    "Economy Code": "GHA",
+    "Pillar 1 Regulatory Framework": 66.83,
+    "Pillar 2 Public Services": 47.67,
+    "Pillar 3 Operational Efficiency": 54.42
+  },
+  {
+    "Economy": "Greece",
+    "Economy Code": "GRC",
+    "Pillar 1 Regulatory Framework": 75.65,
+    "Pillar 2 Public Services": 64.4,
+    "Pillar 3 Operational Efficiency": 58.98
+  },
+  {
+    "Economy": "Hong Kong SAR, China",
+    "Economy Code": "HKG",
+    "Pillar 1 Regulatory Framework": 72.47,
+    "Pillar 2 Public Services": 62.64,
+    "Pillar 3 Operational Efficiency": 78.52
+  },
+  {
+    "Economy": "Hungary",
+    "Economy Code": "HUN",
+    "Pillar 1 Regulatory Framework": 78.34,
+    "Pillar 2 Public Services": 69.5,
+    "Pillar 3 Operational Efficiency": 70.68
+  },
+  {
+    "Economy": "Indonesia",
+    "Economy Code": "IDN",
+    "Pillar 1 Regulatory Framework": 63.93,
+    "Pillar 2 Public Services": 63.44,
+    "Pillar 3 Operational Efficiency": 61.31
+  },
+  {
+    "Economy": "Iraq",
+    "Economy Code": "IRQ",
+    "Pillar 1 Regulatory Framework": 49.28,
+    "Pillar 2 Public Services": 21.45,
+    "Pillar 3 Operational Efficiency": 46.79
+  },
+  {
+    "Economy": "Kyrgyz Republic",
+    "Economy Code": "KGZ",
+    "Pillar 1 Regulatory Framework": 65.33,
+    "Pillar 2 Public Services": 41.23,
+    "Pillar 3 Operational Efficiency": 74.71
+  },
+  {
+    "Economy": "Lesotho",
+    "Economy Code": "LSO",
+    "Pillar 1 Regulatory Framework": 54.87,
+    "Pillar 2 Public Services": 37.89,
+    "Pillar 3 Operational Efficiency": 66.06
+  },
+  {
+    "Economy": "Madagascar",
+    "Economy Code": "MDG",
+    "Pillar 1 Regulatory Framework": 57.28,
+    "Pillar 2 Public Services": 31.64,
+    "Pillar 3 Operational Efficiency": 52.29
+  },
+  {
+    "Economy": "Mauritius",
+    "Economy Code": "MUS",
+    "Pillar 1 Regulatory Framework": 64.57,
+    "Pillar 2 Public Services": 56.28,
+    "Pillar 3 Operational Efficiency": 69.79
+  },
+  {
+    "Economy": "Mexico",
+    "Economy Code": "MEX",
+    "Pillar 1 Regulatory Framework": 74.99,
+    "Pillar 2 Public Services": 57.25,
+    "Pillar 3 Operational Efficiency": 61.73
+  },
+  {
+    "Economy": "Montenegro",
+    "Economy Code": "MNE",
+    "Pillar 1 Regulatory Framework": 72.54,
+    "Pillar 2 Public Services": 48.92,
+    "Pillar 3 Operational Efficiency": 71.03
+  },
+  {
+    "Economy": "Morocco",
+    "Economy Code": "MAR",
+    "Pillar 1 Regulatory Framework": 68.85,
+    "Pillar 2 Public Services": 58.66,
+    "Pillar 3 Operational Efficiency": 59.66
+  },
+  {
+    "Economy": "Nepal",
+    "Economy Code": "NPL",
+    "Pillar 1 Regulatory Framework": 59.3,
+    "Pillar 2 Public Services": 49.29,
+    "Pillar 3 Operational Efficiency": 72.21
+  },
+  {
+    "Economy": "New Zealand",
+    "Economy Code": "NZL",
+    "Pillar 1 Regulatory Framework": 67.51,
+    "Pillar 2 Public Services": 68.91,
+    "Pillar 3 Operational Efficiency": 76.39
+  },
+  {
+    "Economy": "North Macedonia",
+    "Economy Code": "MKD",
+    "Pillar 1 Regulatory Framework": 69.96,
+    "Pillar 2 Public Services": 53.56,
+    "Pillar 3 Operational Efficiency": 75.81
+  },
+  {
+    "Economy": "Pakistan",
+    "Economy Code": "PAK",
+    "Pillar 1 Regulatory Framework": 59.06,
+    "Pillar 2 Public Services": 44.97,
+    "Pillar 3 Operational Efficiency": 65.9
+  },
+  {
+    "Economy": "Paraguay",
+    "Economy Code": "PRY",
+    "Pillar 1 Regulatory Framework": 60.89,
+    "Pillar 2 Public Services": 50.68,
+    "Pillar 3 Operational Efficiency": 60.6
+  },
+  {
+    "Economy": "Peru",
+    "Economy Code": "PER",
+    "Pillar 1 Regulatory Framework": 69.61,
+    "Pillar 2 Public Services": 59.76,
+    "Pillar 3 Operational Efficiency": 56.2
+  },
+  {
+    "Economy": "Philippines",
+    "Economy Code": "PHL",
+    "Pillar 1 Regulatory Framework": 70.78,
+    "Pillar 2 Public Services": 50.8,
+    "Pillar 3 Operational Efficiency": 57.95
+  },
+  {
+    "Economy": "Portugal",
+    "Economy Code": "PRT",
+    "Pillar 1 Regulatory Framework": 78.16,
+    "Pillar 2 Public Services": 69.53,
+    "Pillar 3 Operational Efficiency": 70.8
+  },
+  {
+    "Economy": "Romania",
+    "Economy Code": "ROM",
+    "Pillar 1 Regulatory Framework": 76.24,
+    "Pillar 2 Public Services": 63.19,
+    "Pillar 3 Operational Efficiency": 65.74
+  },
+  {
+    "Economy": "Rwanda",
+    "Economy Code": "RWA",
+    "Pillar 1 Regulatory Framework": 70.43,
+    "Pillar 2 Public Services": 67.37,
+    "Pillar 3 Operational Efficiency": 81.31
+  },
+  {
+    "Economy": "Samoa",
+    "Economy Code": "WSM",
+    "Pillar 1 Regulatory Framework": 57.11,
+    "Pillar 2 Public Services": 40.04,
+    "Pillar 3 Operational Efficiency": 68.32
+  },
+  {
+    "Economy": "Seychelles",
+    "Economy Code": "SYC",
+    "Pillar 1 Regulatory Framework": 58.83,
+    "Pillar 2 Public Services": 37.21,
+    "Pillar 3 Operational Efficiency": 63.57
+  },
+  {
+    "Economy": "Sierra Leone",
+    "Economy Code": "SLE",
+    "Pillar 1 Regulatory Framework": 54.05,
+    "Pillar 2 Public Services": 30.73,
+    "Pillar 3 Operational Efficiency": 52.51
+  },
+  {
+    "Economy": "Singapore",
+    "Economy Code": "SGP",
+    "Pillar 1 Regulatory Framework": 72.46,
+    "Pillar 2 Public Services": 70.4,
+    "Pillar 3 Operational Efficiency": 87.33
+  },
+  {
+    "Economy": "Slovak Republic",
+    "Economy Code": "SVK",
+    "Pillar 1 Regulatory Framework": 77.35,
+    "Pillar 2 Public Services": 68.17,
+    "Pillar 3 Operational Efficiency": 71.14
+  },
+  {
+    "Economy": "Tanzania",
+    "Economy Code": "TZA",
+    "Pillar 1 Regulatory Framework": 65.07,
+    "Pillar 2 Public Services": 51.56,
+    "Pillar 3 Operational Efficiency": 62.15
+  },
+  {
+    "Economy": "Timor-Leste",
+    "Economy Code": "TMP",
+    "Pillar 1 Regulatory Framework": 46.21,
+    "Pillar 2 Public Services": 23.8,
+    "Pillar 3 Operational Efficiency": 44.83
+  },
+  {
+    "Economy": "Togo",
+    "Economy Code": "TGO",
+    "Pillar 1 Regulatory Framework": 69.03,
+    "Pillar 2 Public Services": 49.58,
+    "Pillar 3 Operational Efficiency": 64.36
+  },
+  {
+    "Economy": "Vanuatu",
+    "Economy Code": "VUT",
+    "Pillar 1 Regulatory Framework": 50.48,
+    "Pillar 2 Public Services": 32.06,
+    "Pillar 3 Operational Efficiency": 43.94
+  },
+  {
+    "Economy": "Viet Nam",
+    "Economy Code": "VNM",
+    "Pillar 1 Regulatory Framework": 66.77,
+    "Pillar 2 Public Services": 53.41,
+    "Pillar 3 Operational Efficiency": 72.48
+  },
+  {
+    "Economy": "West Bank and Gaza",
+    "Economy Code": "WBG",
+    "Pillar 1 Regulatory Framework": 47.47,
+    "Pillar 2 Public Services": 28.42,
+    "Pillar 3 Operational Efficiency": 52.75
+  }
+]
