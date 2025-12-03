@@ -5,4 +5,9 @@ altair>=5.0.0
 streamlit>=1.28.0
 numpy>=1.24.0
 plotly>=5.0.0
+google-generativeai>=0.3.0
+scikit-learn>=1.3.0
+# datasets>=2.14.0  # Optional - may have PyArrow compatibility issues
+# Note: If you need Anthropic data, install datasets separately:
+# pip install datasets pyarrow --upgrade
 

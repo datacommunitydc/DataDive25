@@ -118,9 +118,148 @@ This document lists all data sources used in the Digital/AI Jobs Demand & Supply
 
 ---
 
+### 7. Anthropic EconomicIndex Dataset
+**Source:** [Hugging Face - Anthropic EconomicIndex](https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2025_09_15)
+
+**Description:** Comprehensive dataset tracking economic indicators related to AI and technology impacts on labor markets and economic activity.
+
+**Data Types:**
+- Economic indicators related to AI adoption
+- Labor market impacts
+- Technology sector metrics
+- Economic index measurements
+
+**Access Method:** Hugging Face Datasets library / Direct download
+
+**License:** MIT License
+
+**Status:** ⚠️ Available for integration (requires Hugging Face datasets library)
+
+**Documentation:** [Dataset Card](https://huggingface.co/datasets/Anthropic/EconomicIndex)
+
+**Integration Note:** Can be loaded using:
+```python
+from datasets import load_dataset
+dataset = load_dataset("Anthropic/EconomicIndex", "release_2025_09_15")
+```
+
+---
+
+### 8. Stanford AI Index Report 2025
+**Source:** [Stanford HAI - AI Index Report 2025](https://hai.stanford.edu/ai-index/2025-ai-index-report)
+
+**Description:** Comprehensive annual report tracking AI progress, including research, technical performance, responsible AI, economy, science, policy, education, and public opinion.
+
+**Key Metrics:**
+- AI research and development trends
+- Technical performance benchmarks
+- Private AI investment data
+- AI model development statistics
+- Labor market impacts
+- Public opinion on AI
+
+**Access Method:**
+- Public data access via [AI Index Public Data](https://hai.stanford.edu/ai-index/2025-ai-index-report)
+- Report downloads (PDF)
+- Data visualizations and datasets
+
+**License:** Public domain / Open access
+
+**Status:** ⚠️ Available for integration (data available via public data portal)
+
+**Key Insights Relevant to Dashboard:**
+- U.S. private AI investment: $109.1 billion (2024)
+- 78% of organizations reported using AI in 2024
+- AI boosts productivity and helps narrow skill gaps
+- Performance gaps between top AI models shrinking
+
+**Documentation:** [2025 AI Index Report](https://hai.stanford.edu/ai-index/2025-ai-index-report)
+
+---
+
+### 9. PwC AI Jobs Barometer
+**Source:** [PwC AI Jobs Barometer](https://www.pwc.com/gx/en/services/ai/ai-jobs-barometer.html)
+
+**Description:** Comprehensive analysis of AI's impact on jobs, tracking job postings, skills demand, and labor market transformations across industries and regions.
+
+**Data Types:**
+- AI job posting trends
+- Skills demand analysis
+- Industry-level job impacts
+- Regional variations in AI job markets
+- Supply and demand dynamics
+
+**Access Method:**
+- Annual reports (PDF downloads)
+- 2025 AI Jobs Barometer report
+- 2024 AI Jobs Barometer report (historical data)
+
+**License:** PwC proprietary (publicly available reports)
+
+**Status:** ⚠️ Available for integration (via report analysis and data extraction)
+
+**Reports Available:**
+- 2025 AI Jobs Barometer (Full report and Executive summary)
+- 2024 AI Jobs Barometer (Historical comparison)
+
+**Relevance:** Directly addresses Challenge 8 requirements for understanding digital/AI job demand and supply trends.
+
+---
+
+### 10. Yale Budget Lab - Evaluating Impact of AI on Labor Market
+**Source:** [Yale Budget Lab Research](https://budgetlab.yale.edu/research/evaluating-impact-ai-labor-market-current-state-affairs)
+
+**Description:** Research and analysis on the current state of AI's impact on labor markets, including displacement effects, job creation, and workforce transitions.
+
+**Data Types:**
+- Labor market impact assessments
+- Job displacement analysis
+- Workforce transition metrics
+- Economic impact evaluations
+
+**Access Method:** Research publications and datasets
+
+**License:** Academic research (check specific publication licenses)
+
+**Status:** ⚠️ Available for integration (via research publications)
+
+**Relevance:** Provides academic perspective on AI labor market impacts, complementing industry and government data sources.
+
+---
+
+### 11. McKinsey - Economic Potential of Generative AI
+**Source:** [McKinsey - The Economic Potential of Generative AI](https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
+
+**Description:** Comprehensive analysis of generative AI's economic potential, productivity impacts, and implications for the future of work across industries.
+
+**Key Insights:**
+- Economic value potential of generative AI
+- Productivity gains by industry
+- Workforce implications
+- Skills transformation requirements
+- Regional economic impacts
+
+**Access Method:**
+- Research reports and articles
+- Data visualizations
+- Industry-specific analyses
+
+**License:** McKinsey proprietary (publicly available insights)
+
+**Status:** ⚠️ Available for integration (via report analysis and insights extraction)
+
+**Relevance:** Provides strategic insights on generative AI's economic impact, which directly relates to digital/AI job demand forecasting.
+
+**Key Findings:**
+- Generative AI could add trillions of dollars in value to global economy
+- Significant productivity gains across knowledge work sectors
+- Transformation of work activities and required skills
+
+---
+
 ## Sample/Demonstration Data
 
-### 7. Generated Sample Data
+### 12. Generated Sample Data
 **Description:** Sample digital/AI jobs data created for demonstration purposes.
 
 **Coverage:**
@@ -183,7 +322,35 @@ All data is processed and stored in a **DuckDB** database (`digital_jobs.duckdb`
 
 ## Future Data Integration
 
-Potential additional data sources for future versions:
+The following data sources are identified and available for integration:
+
+### Priority Integration Sources:
+
+1. **Anthropic EconomicIndex Dataset** (Hugging Face)
+   - Ready for integration via Hugging Face datasets library
+   - Provides economic indicators related to AI impacts
+   - Status: ⚠️ Ready for integration
+
+2. **Stanford AI Index Public Data**
+   - Comprehensive AI metrics and trends
+   - Investment and adoption data
+   - Status: ⚠️ Available via public data portal
+
+3. **PwC AI Jobs Barometer Data**
+   - Direct job posting trends
+   - Skills demand analysis
+   - Status: ⚠️ Requires data extraction from reports
+
+4. **Yale Budget Lab Research Data**
+   - Academic research on AI labor impacts
+   - Status: ⚠️ Requires data extraction from publications
+
+5. **McKinsey Generative AI Insights**
+   - Economic potential analysis
+   - Productivity impact data
+   - Status: ⚠️ Requires data extraction from reports
+
+### Additional Potential Sources:
 
 1. **Job Posting APIs:**
    - LinkedIn Jobs API
@@ -215,6 +382,11 @@ When using this dashboard or its data, please attribute:
 - **ITU:** "Data from International Telecommunication Union (https://datahub.itu.int/)"
 - **ILO:** "Data from International Labour Organization (https://ilostat.ilo.org/)"
 - **GLD:** "Data from World Bank Global Labor Database (https://worldbank.github.io/gld/)"
+- **Anthropic:** "Data from Anthropic EconomicIndex Dataset (https://huggingface.co/datasets/Anthropic/EconomicIndex)"
+- **Stanford HAI:** "Data from Stanford AI Index Report 2025 (https://hai.stanford.edu/ai-index/2025-ai-index-report)"
+- **PwC:** "Data from PwC AI Jobs Barometer (https://www.pwc.com/gx/en/services/ai/ai-jobs-barometer.html)"
+- **Yale Budget Lab:** "Research from Yale Budget Lab (https://budgetlab.yale.edu/research/evaluating-impact-ai-labor-market-current-state-affairs)"
+- **McKinsey:** "Insights from McKinsey - Economic Potential of Generative AI (https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)"
 
 ---
 
@@ -243,4 +415,9 @@ January 2025
 5. [ITU ICT Data Hub](https://datahub.itu.int/)
 6. [Global Findex](https://www.worldbank.org/en/publication/globalfindex)
 7. [World Bank API Documentation](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation)
+8. [Anthropic EconomicIndex Dataset](https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/release_2025_09_15)
+9. [Stanford AI Index Report 2025](https://hai.stanford.edu/ai-index/2025-ai-index-report)
+10. [PwC AI Jobs Barometer](https://www.pwc.com/gx/en/services/ai/ai-jobs-barometer.html)
+11. [Yale Budget Lab - AI Labor Market Impact](https://budgetlab.yale.edu/research/evaluating-impact-ai-labor-market-current-state-affairs)
+12. [McKinsey - Economic Potential of Generative AI](https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
 

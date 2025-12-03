@@ -1,12 +1,14 @@
 # Digital/AI Jobs Demand & Supply Dashboard
-
+## PRESENTATION LINK : https://docs.google.com/presentation/d/13aCD62wRDEDHGBNqPs1Kwl6Kz-rbuxgxZpIkjR5V6L8/edit?usp=sharing
 ## Overview
 
-This project addresses **Challenge 8** from Category V: Toward New Insights on Job Trends. We built an interactive dashboard that visualizes where digital/AI job demand and supply are rising or lagging across countries, industries, and skill types. The dashboard helps policymakers, researchers, and stakeholders understand the dynamics of the digital labor market and identify opportunities and challenges in the transition to a digital economy.
+Team DigitalAIJobsDashboard analyzed digital and AI job demand and supply trends using World Bank data and built an interactive analytical dashboard using Streamlit to visualize where digital/AI job demand and supply are rising or lagging across countries, industries, and skill types. The tool allows users to compare employment trends, identify demand-supply gaps, and track how digital job markets are evolving over time. It helps policymakers, researchers, and stakeholders understand the dynamics of the digital labor market and identify opportunities and challenges in the transition to a digital economy.
 
 ## Team Members
 
-*[Add your team members here]*
+- Hussain Adeli
+- Nick Wagner
+- Maria Alejandra Zegarra
 
 ## Challenge Category
 
@@ -16,7 +18,13 @@ This project addresses **Challenge 8** from Category V: Toward New Insights on J
 
 ## Project Description
 
+Team DigitalAIJobsDashboard built an analytical application using Streamlit to visualize employment trends across different sectors and regions. The tool allows users to compare employment rates, job creation trends, and sector-specific employment data over time.
+
 The world is undergoing a major employment transition: over 1.2 billion youth in developing countries will enter the labor force by 2030, many into economies where work remains largely informal, low-productivity, and vulnerable to disruption. Digitalization offers immense potential to create new and better jobs—expanding access, connectivity, and innovation—but it also poses risks, as technology can displace or transform existing forms of work.
+
+Specifically looking at youth data, the dashboard helps track how youth education levels (15–24) will shift by 2035 across countries and scenarios, and what this implies for future skills, gender gaps, and regional winners & who may fall behind.
+
+The application is designed to be user-friendly, with interactive visualizations that allow users to filter data by country, sector, and time period. It also includes a dashboard that provides key metrics and insights about employment trends.
 
 Our interactive dashboard addresses this challenge by providing:
 
