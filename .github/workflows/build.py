@@ -339,7 +339,7 @@ def render_single_file(root: Path, file_path: Path) -> tuple[bool, str]:
     try:
         # Use Popen to stream output in real-time
         process = subprocess.Popen(
-            ["quarto", "render", str(file_path), "--verbose"],
+            ["quarto", "render", str(file_path)],
             cwd=root,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
