@@ -1,6 +1,6 @@
 # Data files
 *.duckdb
-*.csv
+# *.csv
 
 # Quarto generated files
 _quarto.yml
